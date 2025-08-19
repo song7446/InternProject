@@ -17,16 +17,16 @@
                 {
                     "name": "Look",
                     "type": "Value",
-                    "id": "8d43dc16-bcd4-42a7-af0a-1c7437468267",
+                    "id": "08d38f1d-0ed4-49c6-acda-60a1a2e19267",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Attack",
                     "type": "Value",
-                    "id": "8f7a8e6b-ac2b-4acc-9ba3-65bd73497c95",
+                    "id": "2a70c01a-432f-4b9a-89ad-bfc0466bf796",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -91,7 +91,7 @@
                 },
                 {
                     "name": "",
-                    "id": "97dab974-1aac-43c0-ad9e-1154e2325905",
+                    "id": "8bd000d0-6f42-4b71-a371-77fccfb3549e",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -102,23 +102,17 @@
                 },
                 {
                     "name": "",
-                    "id": "b7899f9b-c5ac-48b3-aacc-2031d6d7a6e5",
+                    "id": "6035231f-3a55-42bf-a9f8-1f096e355f9c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "Player",
-            "bindingGroup": "Player",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }
