@@ -14,7 +14,7 @@ public class MonsterData
     public float MoveSpeed;
     public int MinExp;
     public int MaxExp;
-    public string DropItem;  // int/string 혼용이므로 string으로
+    public string DropItem;
 }
 
 [System.Serializable]

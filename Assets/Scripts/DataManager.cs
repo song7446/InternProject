@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    void Start()
+    public static DataManager Instance;
+    
+    MonsterData[] monsterDatas; 
+    void Awake()
     {
+        Instance = this;
         LoadMonsterData();
     }
 
@@ -16,12 +20,30 @@ public class DataManager : MonoBehaviour
         if (json != null)
         {
             MonsterWrapper datas = JsonUtility.FromJson<MonsterWrapper>(json.text);
-            MonsterData[] monsterDatas = datas.Monster;
+            monsterDatas = datas.Monster;
 
             foreach (MonsterData data in monsterDatas)
             {
                 Debug.Log(data.Name);
             }
         }
+    }
+    
+    public MonsterData GetMonsterDataFromId(string monsterID)
+    {
+        foreach (MonsterData data in monsterDatas)
+        {
+            if (data.MonsterID == monsterID)
+            {
+                return data;
+            }       
+        }
+        return null;
+    }
+
+    public MonsterData GetRandomMonsterData()
+    {
+        int randomIndex = Random.Range(0, monsterDatas.Length);
+        return monsterDatas[randomIndex];
     }
 }

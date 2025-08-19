@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask monsterMask;
+    [SerializeField] private LayerMask wallMask;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & mask) != 0)
+        if (((1 << collision.gameObject.layer) & monsterMask) != 0)
         {
-            Debug.Log(collision.gameObject.layer);
-            Destroy(gameObject);       
+            collision.GetComponent<MonsterStatHandler>().GetDamge(10); 
+            Destroy(gameObject);
+        }
+        else if (((1 << collision.gameObject.layer) & wallMask) != 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
