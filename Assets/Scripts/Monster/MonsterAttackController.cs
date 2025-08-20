@@ -42,8 +42,9 @@ public class MonsterAttackController : BaseAttackController
         {
             Vector2 direction = enemies[0].position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            Quaternion bulletAngle = Quaternion.Euler(0, 0, angle - 90);
+            
+            GameObject bullet = BulletManager.Instance.OnSpawnBullet(transform, bulletAngle, BulletType.monster);;
 
             Rigidbody2D rigidbody = bullet.transform.GetComponent<Rigidbody2D>();
             rigidbody.velocity = direction.normalized * 5f;

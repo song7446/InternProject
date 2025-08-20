@@ -16,8 +16,8 @@ public class BulletManager : MonoBehaviour
     private GameObject playerBulletPrefab;
     private GameObject monsterBulletPrefab;
 
-    public Stack<GameObject> playerBullets = new Stack<GameObject>();
-    public Stack<GameObject> monsterBullets;
+    private Stack<GameObject> playerBullets;
+    private Stack<GameObject> monsterBullets;
 
     private void Awake()
     {
@@ -68,7 +68,12 @@ public class BulletManager : MonoBehaviour
                 bullet.transform.rotation = rot;
             }
             else
+            {
                 bullet = Instantiate(playerBulletPrefab, pos.position, rot, transform);
+                BulletController playerBulletController = bullet.GetComponent<BulletController>();
+                playerBulletController.bulletType = BulletType.player;
+                playerBullets.Push(bullet);
+            }
         }
 
         else
@@ -80,7 +85,12 @@ public class BulletManager : MonoBehaviour
                 bullet.transform.rotation = rot;
             }
             else
+            {
                 bullet = Instantiate(monsterBulletPrefab, pos.position, rot, transform);
+                BulletController monsterBulletController = bullet.GetComponent<BulletController>();
+                monsterBulletController.bulletType = BulletType.monster;
+                monsterBullets.Push(bullet);
+            }
         }
         bullet.SetActive(true);
         return bullet;
