@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &60591346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60591348}
+  - component: {fileID: 60591347}
+  m_Layer: 0
+  m_Name: BulletManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &60591347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60591346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5d7c4727f05264faee6ab0b4c96104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &60591348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60591346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198747665
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb0c1fd8eac32149839a671c2c32c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 519883404228422731, guid: f7665f1a884427542bc80dbda8353551, type: 3}
 --- !u!4 &337711367
 Transform:
   m_ObjectHideFlags: 0
@@ -746,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75e1a463f817a34b8020bd49abb0288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1593204714}
+  player: {fileID: 0}
 --- !u!4 &1038353849
 Transform:
   m_ObjectHideFlags: 0
@@ -775,7 +818,7 @@ GameObject:
   - component: {fileID: 1253165801}
   m_Layer: 0
   m_Name: BaseMap
-  m_TagString: Untagged
+  m_TagString: Tilemap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8948,7 +8991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b389530920ee87e4e822e84a06f723ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 1253165802}
   monsterPrefabs:
   - {fileID: 8770173384849238129, guid: cba53083f1535b64ea431f780f901d30, type: 3}
   - {fileID: 1112027438443016871, guid: 922a177238861d3489cf7a108099d089, type: 3}
@@ -10392,3 +10434,4 @@ SceneRoots:
   - {fileID: 922508540}
   - {fileID: 1038353849}
   - {fileID: 337711367}
+  - {fileID: 60591348}

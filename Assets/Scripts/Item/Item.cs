@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
         if (((1 << collision.gameObject.layer) & playerMask) != 0)
         {
             GameManager.Instance.player.PlayerStatHandler.OnItemPickedUp.Invoke(itemData);
-            Destroy(gameObject);
+            ItemManager.Instance.OnDestroyItem(gameObject);
         }
     }
     

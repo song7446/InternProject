@@ -26,7 +26,7 @@ public class MonsterStatHandler : BaseStatHandler
             string[] itemIds = monsterData.DropItem.Split(',');
             int rand = Random.Range(0, itemIds.Length);
             int itemId = int.Parse(itemIds[rand].Trim());
-            ItemManager.Instance.CreateItem(itemId, transform.position);
+            ItemManager.Instance.RecycleItem(itemId, transform.position);
             MonsterManager.Instance.OnDead(gameObject);
             hp = monsterData.MaxHP;
             hpBar.fillAmount =  hp / monsterData.MaxHP;

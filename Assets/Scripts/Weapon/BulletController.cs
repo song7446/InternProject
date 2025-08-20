@@ -13,8 +13,8 @@ public class BulletController : BaseWeaponController
     {
         if (((1 << collision.gameObject.layer) & enemyMask) != 0)
         {
-            collision.GetComponent<BaseStatHandler>().OnDamaged.Invoke((int)damage);
-            Destroy(gameObject);
+            collision.GetComponent<BaseStatHandler>().OnDamaged?.Invoke((int)damage);
+            BulletManager.Instance.OnDestroyBullet(gameObject, bulletType);
         }
         else if (((1 << collision.gameObject.layer) & wallMask) != 0)
         {

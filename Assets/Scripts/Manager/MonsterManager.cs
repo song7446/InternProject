@@ -10,8 +10,8 @@ public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager Instance;
 
-    [SerializeField] private Tilemap tilemap;
-    [SerializeField] private GameObject[] monsterPrefabs;
+    private Tilemap tilemap;
+    [SerializeField] private List<GameObject> monsterPrefabs;
 
     private List<Vector2> validPositions = new List<Vector2>();
     
@@ -20,7 +20,15 @@ public class MonsterManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
+        
+        tilemap = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Tilemap>();
+        
+        monsterPrefabs = new List<GameObject>();
+        GameObject monsterPrefab1 = Resources.Load<GameObject>("Prefabs/Enemy0");
+        monsterPrefabs.Add(monsterPrefab1);
+        GameObject monsterPrefab2 = Resources.Load<GameObject>("Prefabs/Enemy2");
+        monsterPrefabs.Add(monsterPrefab2);
+        
         foreach (var pos in tilemap.cellBounds.allPositionsWithin)
         {
             if (tilemap.HasTile(pos))
@@ -44,7 +52,7 @@ public class MonsterManager : MonoBehaviour
         {
             for (int i = 0; i < 10; i++)
             {
-                int rand = Random.Range(0, monsterPrefabs.Length);
+                int rand = Random.Range(0, monsterPrefabs.Count);
                 int randPos = Random.Range(0, validPositions.Count);
                 GameObject monster = Instantiate(monsterPrefab, validPositions[randPos], Quaternion.identity, transform);
                 MonsterStatHandler statHandler = monster.GetComponent<MonsterStatHandler>();
