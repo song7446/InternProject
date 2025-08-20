@@ -26,7 +26,7 @@ public class MonsterStatHandler : MonoBehaviour
 
         if (hp == 0)
         {
-            ItemData itemData = DataManager.Instance.GetItemDataFromId(Int32.Parse(monsterData.DropItem));
+            ItemManager.Instance.CreateItem(int.Parse(monsterData.DropItem), transform.position);
             Destroy(gameObject);
         }
     }
