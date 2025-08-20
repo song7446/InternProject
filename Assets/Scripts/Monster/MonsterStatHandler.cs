@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class MonsterStatHandler : BaseStatHandler
 {
-    MonsterData monsterData;
+    public MonsterData monsterData { get; private set; }
 
     public void Init(MonsterData monsterData)
     {
