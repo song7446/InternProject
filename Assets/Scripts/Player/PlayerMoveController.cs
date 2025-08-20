@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMoveController : MonoBehaviour
 {
-    private PlayerAnimController playerAnimController;
-
     [SerializeField] private float moveSpeed = 5f;
 
     private Rigidbody2D rb;
@@ -15,7 +13,6 @@ public class PlayerMoveController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerAnimController = GetComponent<PlayerAnimController>();
     }
 
     private void FixedUpdate()
@@ -26,7 +23,7 @@ public class PlayerMoveController : MonoBehaviour
     private void OnMove(InputValue inputValue)
     {
         moveInput = inputValue.Get<Vector2>();
-        playerAnimController.OnMoveAnim(moveInput);
+        GameManager.Instance.player.PlayerAnimController.OnMoveAnim(moveInput);
     }
     
     private void Move()
