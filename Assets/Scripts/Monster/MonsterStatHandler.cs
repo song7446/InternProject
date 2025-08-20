@@ -9,6 +9,8 @@ public class MonsterStatHandler : MonoBehaviour
 {
     MonsterData monsterData;
     public float hp { get; private set; }
+    
+    public Action<int> OnDamaged;
 
     [Header("UI")]
     [SerializeField] private Image hpBar;
@@ -17,9 +19,11 @@ public class MonsterStatHandler : MonoBehaviour
     {
         this.monsterData = monsterData;
         hp = monsterData.MaxHP;
+        
+        OnDamaged += GetDamge;
     }
 
-    public void GetDamge(int damage)
+    private void GetDamge(int damage)
     {
         hp = Mathf.Max(0, hp - damage);
         hpBar.fillAmount =  hp / monsterData.MaxHP;

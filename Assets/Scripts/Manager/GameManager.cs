@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     
-    public GameObject player;
+    public Player player;
     
     private void Awake()
     {
         Instance = this;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 }

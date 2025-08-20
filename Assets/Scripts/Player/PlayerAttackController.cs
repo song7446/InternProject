@@ -14,32 +14,36 @@ public class PlayerAttackController : MonoBehaviour
 
     private Vector2 playerPos;
     private Vector2 mouseWorldPos;
-
-    public float detectionRange = 5f;
-    public float fireDelay = 1f;
-    private float fireTimer = 0f;
-    public LayerMask enemyLayer;
-    public bool isDetecting = true;
+    
+    [SerializeField] private LayerMask enemyLayer;
 
     private List<Transform> enemies = new List<Transform>();
 
+    private float fireTimer;
+    private float detectionRange;
+    private float fireDelay;
+
+    private void Start()
+    {
+        fireTimer = GameManager.Instance.player.PlayerStatHandler.fireDelay;
+        detectionRange = GameManager.Instance.player.PlayerStatHandler.detectionRange;
+        fireDelay = GameManager.Instance.player.PlayerStatHandler.fireDelay;
+    }
+
     private void Update()
     {
-        if (isDetecting)
-        {
-            DetectEnemies();
-        }
+        DetectEnemies();
     }
 
     private void FixedUpdate()
     {
         Look();
-
+        
         fireTimer -= Time.deltaTime;
         if (fireTimer <= 0f)
         {
             AutoFire();
-            fireTimer = fireDelay;       
+            fireTimer = fireDelay;
         }
     }
 
@@ -72,7 +76,7 @@ public class PlayerAttackController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         weaponSR.transform.rotation = Quaternion.Euler(0, 0, angle);
-        
+
         float weaponOffset = 0.5f;
         weaponSR.transform.position = playerPos + direction.normalized * weaponOffset;
     }
@@ -106,6 +110,6 @@ public class PlayerAttackController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        // Gizmos.DrawWireSphere(transform.position, GameManager.Instance.player.PlayerStatHandler.detectionRange);
     }
 }

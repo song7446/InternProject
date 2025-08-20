@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & monsterMask) != 0)
         {
-            collision.GetComponent<MonsterStatHandler>().GetDamge(10); 
+            collision.GetComponent<MonsterStatHandler>().OnDamaged.Invoke((int)GameManager.Instance.player.PlayerStatHandler.attack); 
             Destroy(gameObject);
         }
         else if (((1 << collision.gameObject.layer) & wallMask) != 0)
