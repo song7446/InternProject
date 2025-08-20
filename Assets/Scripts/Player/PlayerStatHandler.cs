@@ -56,6 +56,7 @@ public class PlayerStatHandler : BaseStatHandler
     private void ApplyItemEffect(ItemData itemData)
     {
         hp += itemData.MaxHP;
+        hpBar.fillAmount = hp / maxHp;
         attack += itemData.MaxAtk;
         defense += itemData.MaxDef;
     }
