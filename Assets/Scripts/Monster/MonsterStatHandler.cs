@@ -4,33 +4,29 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-public class MonsterStatHandler : MonoBehaviour
+public class MonsterStatHandler : BaseStatHandler
 {
     MonsterData monsterData;
-    public float hp { get; private set; }
-    
-    public Action<int> OnDamaged;
-
-    [Header("UI")]
-    [SerializeField] private Image hpBar;
 
     public void Init(MonsterData monsterData)
     {
         this.monsterData = monsterData;
         hp = monsterData.MaxHP;
-        
-        OnDamaged += GetDamge;
     }
 
-    private void GetDamge(int damage)
+    protected override void GetDamge(int damage)
     {
         hp = Mathf.Max(0, hp - damage);
         hpBar.fillAmount =  hp / monsterData.MaxHP;
 
         if (hp == 0)
         {
-            ItemManager.Instance.CreateItem(int.Parse(monsterData.DropItem), transform.position);
+            string[] itemIds = monsterData.DropItem.Split(',');
+            int rand = Random.Range(0, itemIds.Length);
+            int itemId = int.Parse(itemIds[rand].Trim());
+            ItemManager.Instance.CreateItem(itemId, transform.position);
             Destroy(gameObject);
         }
     }
