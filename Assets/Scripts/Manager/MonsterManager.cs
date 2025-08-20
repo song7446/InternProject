@@ -14,6 +14,8 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] private GameObject[] monsterPrefabs;
 
     private List<Vector2> validPositions = new List<Vector2>();
+    
+    List<GameObject> monsters = new List<GameObject>();
 
     private void Awake()
     {
@@ -27,20 +29,46 @@ public class MonsterManager : MonoBehaviour
                 validPositions.Add(worldPos);
             }
         }
+
+        CreateMonster();
     }
 
     private void Start()
     {
-        // InvokeRepeating("CreateMonster", 1f, 2f);
-        CreateMonster();
+        InvokeRepeating("RecycleMonster", 1f, 3f);
     }
 
-    public void CreateMonster()
+    private void CreateMonster()
     {
-        int rand = Random.Range(0, monsterPrefabs.Length);
+        foreach (var monsterPrefab in monsterPrefabs)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                int rand = Random.Range(0, monsterPrefabs.Length);
+                int randPos = Random.Range(0, validPositions.Count);
+                GameObject monster = Instantiate(monsterPrefab, validPositions[randPos], Quaternion.identity, transform);
+                MonsterStatHandler statHandler = monster.GetComponent<MonsterStatHandler>();
+                statHandler.Init(DataManager.Instance.GetRandomMonsterData());
+                monsters.Add(monster);
+                monster.SetActive(false);
+            }
+        }
+    }
+
+    private void RecycleMonster()
+    {
+        int rand = Random.Range(0, monsters.Count);
         int randPos = Random.Range(0, validPositions.Count);
-        GameObject monster = Instantiate(monsterPrefabs[rand], validPositions[randPos], Quaternion.identity);
-        MonsterStatHandler statHandler = monster.GetComponent<MonsterStatHandler>();
-        statHandler.Init(DataManager.Instance.GetRandomMonsterData());
+        
+        GameObject monster = monsters[rand];
+        monster.transform.position = validPositions[randPos];
+        monsters.RemoveAt(rand);
+        monster.SetActive(true);
+    }
+    
+    public void OnDead(GameObject monster)
+    {
+        monster.SetActive(false);
+        monsters.Add(monster);
     }
 }

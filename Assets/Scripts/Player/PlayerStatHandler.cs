@@ -21,7 +21,7 @@ public class PlayerStatHandler : BaseStatHandler
         hp = 100;
         maxHp = 100;
 
-        attack = 10;
+        attack = 60;
         defense = 10;
 
         detectionRange = 5;
