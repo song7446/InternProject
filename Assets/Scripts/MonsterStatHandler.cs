@@ -2,21 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterStatHandler : MonoBehaviour
-{   
+{
     MonsterData monsterData;
-    public float HP { get; private set; }
+    public float hp { get; private set; }
+
+    [Header("UI")]
+    [SerializeField] private Image hpBar;
 
     public void Init(MonsterData monsterData)
     {
         this.monsterData = monsterData;
-        HP = monsterData.MaxHP;       
+        hp = monsterData.MaxHP;
     }
-    
+
     public void GetDamge(int damage)
     {
-        HP -= damage;
-        Debug.Log($"데미지 {damage} 받음 남은 체력 {HP}");
+        hp = Mathf.Max(0, hp - damage);
+        hpBar.fillAmount =  hp / monsterData.MaxHP;
     }
 }
