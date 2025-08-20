@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerAttackController : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer playerSR;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private SpriteRenderer weaponSR;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPos;
@@ -46,7 +46,7 @@ public class PlayerAttackController : MonoBehaviour
     private void OnLook(InputValue inputValue)
     {
         Vector2 mousePos = inputValue.Get<Vector2>();
-        mouseWorldPos = camera.ScreenToWorldPoint(mousePos);
+        mouseWorldPos = mainCamera.ScreenToWorldPoint(mousePos);
     }
 
     private void Look()
