@@ -5,6 +5,8 @@ using UnityEngine;
 public class MonsterAttackController : BaseAttackController
 {
     MonsterStatHandler monsterStatHandler;
+
+    [SerializeField] private GameObject weapon;
     
     protected void Start()
     {
@@ -15,6 +17,9 @@ public class MonsterAttackController : BaseAttackController
         detectionRange = monsterStatHandler.monsterData.AttackRange;
         enemies = new List<Transform>();
         bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet2");
+
+        WeaponController weaponController = weapon.GetComponent<WeaponController>();
+        weaponController.SetDamage(monsterStatHandler.GetDamageStat());;
     }
     
     protected override void DetectEmeny()
@@ -33,15 +38,22 @@ public class MonsterAttackController : BaseAttackController
 
     protected override void AutoAttack()
     {
-        Vector2 direction = enemies[0].position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        if (detectionRange > 2)
+        {
+            Vector2 direction = enemies[0].position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        Rigidbody2D rigidbody = bullet.transform.GetComponent<Rigidbody2D>();
-        rigidbody.velocity = direction.normalized * 5f;
-        
-        BulletController bulletController = bullet.GetComponent<BulletController>();
-        bulletController.SetDamage(monsterStatHandler.GetDamageStat());
+            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody2D rigidbody = bullet.transform.GetComponent<Rigidbody2D>();
+            rigidbody.velocity = direction.normalized * 5f;
+
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            bulletController.SetDamage(monsterStatHandler.GetDamageStat());
+        }
+        else
+        {
+            weapon.gameObject.SetActive(true);
+        }
     }
 }

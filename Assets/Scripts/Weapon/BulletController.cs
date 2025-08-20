@@ -3,19 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour
+public class BulletController : BaseWeaponController
 {
-    [SerializeField] private LayerMask enemyMask;
     [SerializeField] private LayerMask wallMask;
-    
-    protected float damage;
 
-    public void SetDamage(float damage)
-    {
-        this.damage = damage;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & enemyMask) != 0)
         {

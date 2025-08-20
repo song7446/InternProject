@@ -10,10 +10,20 @@ public class MonsterMoveController : MonoBehaviour
     MonsterStatHandler monsterStatHandler;
     SpriteRenderer spriteRenderer;
 
+    private Vector3 originalScale;
+    private Vector3 tempScale;
+    private Vector3 leftScale;
     private void Start()
     {
         monsterStatHandler = GetComponent<MonsterStatHandler>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        originalScale = transform.localScale;
+        
+        tempScale = transform.localScale;
+        tempScale.x *= -1;
+        
+        leftScale = tempScale;
     }
 
     private void Update()
@@ -28,11 +38,11 @@ public class MonsterMoveController : MonoBehaviour
 
         if (transform.position.x < GameManager.Instance.player.transform.position.x)
         {
-            spriteRenderer.flipX = false;
+            transform.localScale = originalScale;
         }
         else
         {
-            spriteRenderer.flipX = true;
+            transform.localScale = leftScale;
         }
     }
 }

@@ -8613,8 +8613,8 @@ GameObject:
   - component: {fileID: 1593204702}
   - component: {fileID: 1593204701}
   - component: {fileID: 1593204704}
+  - component: {fileID: 1593204716}
   - component: {fileID: 1593204709}
-  - component: {fileID: 1593204706}
   - component: {fileID: 1593204714}
   - component: {fileID: 1593204713}
   - component: {fileID: 1593204711}
@@ -8747,33 +8747,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!50 &1593204706
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593204700}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &1593204709
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8881,13 +8854,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497b7239fe86bd04a98f7dc21c0240bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
   playerSR: {fileID: 1593204702}
   mainCamera: {fileID: 519420031}
   weaponSR: {fileID: 1016867751}
   bulletSpawnPos: {fileID: 1752647801}
-  enemyLayer:
+--- !u!50 &1593204716
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593204700}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1752647800
 GameObject:
   m_ObjectHideFlags: 0

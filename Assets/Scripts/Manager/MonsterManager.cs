@@ -31,7 +31,8 @@ public class MonsterManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("CreateMonster", 1f, 2f);
+        // InvokeRepeating("CreateMonster", 1f, 2f);
+        CreateMonster();
     }
 
     public void CreateMonster()
