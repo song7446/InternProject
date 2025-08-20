@@ -7,16 +7,18 @@ public class BulletController : BaseWeaponController
 {
     [SerializeField] private LayerMask wallMask;
 
+    public BulletType bulletType;
+
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & enemyMask) != 0)
         {
-            collision.GetComponent<BaseStatHandler>().OnDamaged.Invoke((int)damage); 
+            collision.GetComponent<BaseStatHandler>().OnDamaged.Invoke((int)damage);
             Destroy(gameObject);
         }
         else if (((1 << collision.gameObject.layer) & wallMask) != 0)
         {
-            Destroy(gameObject);
+            BulletManager.Instance.OnDestroyBullet(gameObject, bulletType);
         }
     }
 }

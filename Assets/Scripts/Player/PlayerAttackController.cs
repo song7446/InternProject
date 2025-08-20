@@ -82,7 +82,7 @@ public class PlayerAttackController : BaseAttackController
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         Quaternion bulletAngle = Quaternion.Euler(0, 0, angle - 90);
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, bulletAngle, null);
+        GameObject bullet = BulletManager.Instance.OnSpawnBullet(bulletSpawnPos, bulletAngle, BulletType.player);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = direction.normalized * 5f;
         
