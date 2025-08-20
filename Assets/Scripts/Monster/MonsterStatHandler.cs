@@ -16,7 +16,7 @@ public class MonsterStatHandler : BaseStatHandler
         hp = monsterData.MaxHP;
     }
 
-    protected override void GetDamge(int damage)
+    protected override void ApplyDamage(int damage)
     {
         hp = Mathf.Max(0, hp - damage);
         hpBar.fillAmount =  hp / monsterData.MaxHP;
@@ -29,5 +29,10 @@ public class MonsterStatHandler : BaseStatHandler
             ItemManager.Instance.CreateItem(itemId, transform.position);
             Destroy(gameObject);
         }
+    }
+
+    public override int GetDamageStat()
+    {
+        return monsterData.Attack;
     }
 }

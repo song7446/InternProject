@@ -16,10 +16,8 @@ public class PlayerStatHandler : BaseStatHandler
     
     public Action<ItemData> OnItemPickedUp;
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
-        
         hp = 100;
         maxHp = 100;
 
@@ -28,12 +26,17 @@ public class PlayerStatHandler : BaseStatHandler
 
         detectionRange = 5;
         fireDelay = 0.5f;
-        
+
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         OnItemPickedUp += ApplyItemEffect;
     }
 
 
-    protected override void GetDamge(int damage)
+    protected override void ApplyDamage(int damage)
     {
         hp = Mathf.Max(0, hp - damage);
         hpBar.fillAmount = hp / maxHp;
@@ -41,7 +44,13 @@ public class PlayerStatHandler : BaseStatHandler
         if (hp == 0)
         {
             GameManager.Instance.player.PlayerAnimController.OnDeadAnim();
+            Time.timeScale = 0;
         }
+    }
+
+    public override int GetDamageStat()
+    {
+        return (int)attack;
     }
 
     private void ApplyItemEffect(ItemData itemData)

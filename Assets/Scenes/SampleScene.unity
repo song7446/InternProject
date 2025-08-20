@@ -8617,9 +8617,9 @@ GameObject:
   - component: {fileID: 1593204706}
   - component: {fileID: 1593204714}
   - component: {fileID: 1593204713}
-  - component: {fileID: 1593204712}
   - component: {fileID: 1593204711}
   - component: {fileID: 1593204710}
+  - component: {fileID: 1593204715}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -8845,26 +8845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!114 &1593204712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593204700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497b7239fe86bd04a98f7dc21c0240bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSR: {fileID: 1593204702}
-  mainCamera: {fileID: 519420031}
-  weaponSR: {fileID: 1016867751}
-  bulletPrefab: {fileID: 4167932706422381463, guid: 44b7f8d4c16a4584189753719a9dc426, type: 3}
-  bulletSpawnPos: {fileID: 1752647801}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &1593204713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8889,6 +8869,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 255d8867f259fd14d985c93efbea2134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1593204715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593204700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497b7239fe86bd04a98f7dc21c0240bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSR: {fileID: 1593204702}
+  mainCamera: {fileID: 519420031}
+  weaponSR: {fileID: 1016867751}
+  bulletSpawnPos: {fileID: 1752647801}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1752647800
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,11 +12,13 @@ public abstract class BaseStatHandler : MonoBehaviour
 
     protected virtual void Start()
     {
-        OnDamaged += GetDamge;
+        OnDamaged += ApplyDamage;
     }
 
     [Header("UI")]
     [SerializeField] protected Image hpBar;
     
-    protected abstract void GetDamge(int damage);
+    protected abstract void ApplyDamage(int damage);
+    
+    public abstract int GetDamageStat();
 }

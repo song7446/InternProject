@@ -4,48 +4,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttackController : MonoBehaviour
+public class PlayerAttackController : BaseAttackController
 {
     [SerializeField] private SpriteRenderer playerSR;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private SpriteRenderer weaponSR;
-    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPos;
-
+    
     private Vector2 playerPos;
     private Vector2 mouseWorldPos;
-    
-    [SerializeField] private LayerMask enemyLayer;
-
-    private List<Transform> enemies = new List<Transform>();
-
-    private float fireTimer;
-    private float detectionRange;
-    private float fireDelay;
 
     private void Start()
     {
         fireTimer = GameManager.Instance.player.PlayerStatHandler.fireDelay;
         detectionRange = GameManager.Instance.player.PlayerStatHandler.detectionRange;
         fireDelay = GameManager.Instance.player.PlayerStatHandler.fireDelay;
+        bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
+        enemies = new List<Transform>();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        DetectEnemies();
-    }
-
-    private void FixedUpdate()
-    {
+        base.Update();
         Look();
-        
-        fireTimer -= Time.deltaTime;
-        if (fireTimer <= 0f)
-        {
-            AutoFire();
-            fireTimer = fireDelay;
-        }
     }
+    
 
     private void OnLook(InputValue inputValue)
     {
@@ -81,7 +64,7 @@ public class PlayerAttackController : MonoBehaviour
         weaponSR.transform.position = playerPos + direction.normalized * weaponOffset;
     }
 
-    private void DetectEnemies()
+    protected override void DetectEmeny()
     {
         enemies.Clear();
 
@@ -93,18 +76,18 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
-    private void AutoFire()
+    protected override void AutoAttack()
     {
-        if (enemies.Count > 0)
-        {
-            Vector2 direction = mouseWorldPos - (Vector2)weaponSR.transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 direction = mouseWorldPos - (Vector2)weaponSR.transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            Quaternion bulletAngle = Quaternion.Euler(0, 0, angle - 90);
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, bulletAngle, null);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = direction.normalized * 5f;
-        }
+        Quaternion bulletAngle = Quaternion.Euler(0, 0, angle - 90);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPos.position, bulletAngle, null);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.velocity = direction.normalized * 5f;
+        
+        BulletController bulletController = bullet.GetComponent<BulletController>();
+        bulletController.SetDamage(GameManager.Instance.player.PlayerStatHandler.GetDamageStat());
     }
 
     private void OnDrawGizmosSelected()
