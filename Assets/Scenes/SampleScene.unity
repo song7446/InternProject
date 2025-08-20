@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSR: {fileID: 1593204702}
-  camera: {fileID: 519420031}
+  mainCamera: {fileID: 519420031}
   weaponSR: {fileID: 1016867751}
   bulletPrefab: {fileID: 4167932706422381463, guid: 44b7f8d4c16a4584189753719a9dc426, type: 3}
   bulletSpawnPos: {fileID: 1752647801}

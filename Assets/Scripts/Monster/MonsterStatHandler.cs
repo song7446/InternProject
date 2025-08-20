@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,5 +23,11 @@ public class MonsterStatHandler : MonoBehaviour
     {
         hp = Mathf.Max(0, hp - damage);
         hpBar.fillAmount =  hp / monsterData.MaxHP;
+
+        if (hp == 0)
+        {
+            ItemData itemData = DataManager.Instance.GetItemDataFromId(Int32.Parse(monsterData.DropItem));
+            Destroy(gameObject);
+        }
     }
 }
