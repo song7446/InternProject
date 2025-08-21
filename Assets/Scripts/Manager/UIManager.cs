@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public MonsterInformationUI monsterInformationUI;
 
     [SerializeField] private Button monsterInfoMationBtn;    
+    [SerializeField] private Image gameOverImage;
     private void Awake()
     {
         Instance = this;
@@ -21,5 +22,10 @@ public class UIManager : MonoBehaviour
     private void OnClickMonsterInfoBtn()
     {
         monsterInformationUI.gameObject.SetActive(true);
+    }
+
+    public void GameOverUI()
+    {
+        gameOverImage.gameObject.SetActive(true);
     }
 }

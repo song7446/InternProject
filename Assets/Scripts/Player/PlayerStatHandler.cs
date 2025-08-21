@@ -20,6 +20,7 @@ public class PlayerStatHandler : BaseStatHandler
     {
         hp = 100;
         maxHp = 100;
+        hpBar.fillAmount = hp / maxHp;
 
         attack = 60;
         defense = 10;
@@ -45,6 +46,7 @@ public class PlayerStatHandler : BaseStatHandler
         {
             GameManager.Instance.player.PlayerAnimController.OnDeadAnim();
             Time.timeScale = 0;
+            UIManager.Instance.GameOverUI();
         }
     }
 
