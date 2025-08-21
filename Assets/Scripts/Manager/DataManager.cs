@@ -7,8 +7,8 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
     
-    MonsterData[] monsterDatas; 
-    ItemData[] itemDatas;
+    public MonsterData[] monsterDatas; 
+    public ItemData[] itemDatas;
     
     void Awake()
     {
